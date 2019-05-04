@@ -31,5 +31,5 @@ var joinList = function() {
 window.onload = function() {
     $("join_list").onclick = joinList;
     $("email_address1").focus();
-    alert("This was made by Jericho Betton");
+    alert("This was made by Jericho Betton Copy Right 2019");
 };
