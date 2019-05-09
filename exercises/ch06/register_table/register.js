@@ -1,11 +1,12 @@
 "use strict";
 var $ = function(id) { return document.getElementById(id); };
 
-var processEntries = function() {   
+var processEntries = function() {
     var header = "";
     var html = "";
     var required = "<span>Required field</span>";
     var msg = "Please review your entries and complete all required fields";
+    var name = $("firstName").value;
     var email = $("email_address").value;
     var phone = $("phone").value;
     var country = $("country").value;
@@ -14,25 +15,31 @@ var processEntries = function() {
     if ($("none").checked) { contact = "None"; }
     var terms = $("terms").checked;
 
+    if (name == "") {
+        name = required;
+        header = msg;
+    }
+
     if (email == "") {
-        email = required;          
+        email = required;
         header = msg;
     }
 	if (phone == "") {
-        phone = required;         
+        phone = required;
         header = msg;
     }
 	if (country == "") {
-        country = required;         
+        country = required;
         header = msg;
     }
     if (terms == false) {
         terms = required;
         header = msg;
     }
-    
+
     $("registration_header").firstChild.nodeValue = header;
-    if (header == msg) {     
+    if (header == msg) {
+        html = html + "<tr><td>Name:</td><td>" + name + "</td></tr>";
         html = html + "<tr><td>Email:</td><td>" + email + "</td></tr>";
         html = html + "<tr><td>Phone:</td><td>" + phone + "</td></tr>";
         html = html + "<tr><td>Country:</td><td>" + country + "</td></tr>";
@@ -54,6 +61,6 @@ var resetForm = function() {
 
 window.onload = function() {
     $("register").onclick = processEntries;
-    $("reset_form").onclick = resetForm;    
+    $("reset_form").onclick = resetForm;
     $("email_address").focus();
 };
